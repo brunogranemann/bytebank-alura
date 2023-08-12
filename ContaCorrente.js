@@ -1,5 +1,7 @@
 export class ContaCorrente {
+    cliente;
     agencia;
+
     _saldo = 0;
 
     sacar(valor) {
@@ -12,5 +14,10 @@ export class ContaCorrente {
     depositar(valor) {
         if (valor <= 0) return; // Aqui está sendo aplicado o Early return, um meio de reduzir o número de identações de um código que são geradas pelo uso excessivo de condicionais
         this._saldo += valor;
+    }
+
+    transferir (valor, conta) {
+        const valorSacado = this.sacar(valor);
+        conta.depositar(valorSacado);
     }
 }
